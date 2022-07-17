@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "starwar-movie",
+    "slug": "starwar-movie",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "starwar-movie"
+}
