@@ -74,7 +74,7 @@ export default function MovieList() {
 			>
 				<ImageBackground
 					//can't not load the image
-					source={itemBackground}
+					source={{ uri: item.image }}
 					style={{
 						marginBottom:
 							index !== Object.values(item).length ? widthPercentageToDP(2) : 0,
@@ -108,6 +108,9 @@ export default function MovieList() {
 					keyExtractor={(item) => {
 						item.director.toString() + Math.random().toString()
 					}}
+					key={(item) => {
+						item.director.toString() + Math.random().toString()
+					}}
 					data={movieList}
 					renderItem={flatListItem}
 				/>
@@ -129,6 +132,9 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 		color: colors.white,
 		fontWeight: 'bold',
+		textShadowColor: 'rgba(0, 0, 0, 0.75)',
+		textShadowOffset: { width: -1, height: 1 },
+		textShadowRadius: 10,
 	},
 	releaseDate: {
 		color: colors.white,

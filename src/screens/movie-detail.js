@@ -19,6 +19,7 @@ import moment from 'moment'
 import StarIcon from 'react-native-vector-icons/AntDesign'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { navigationScreen } from '../constant/constant'
+import ArrowBack from 'react-native-vector-icons/FontAwesome'
 export default function MovieDetail() {
 	const itemBackground = require('../../assets/images/all-movie-background.png')
 	const { params } = useRoute()
@@ -67,7 +68,22 @@ export default function MovieDetail() {
 	}
 	return (
 		<ScrollView>
-			<ImageBackground source={itemBackground} style={styles.headerImage}>
+			<ImageBackground
+				source={{ uri: params.movieDetail.image }}
+				style={styles.headerImage}
+			>
+				<TouchableOpacity
+					onPress={() => {
+						nav.goBack()
+					}}
+				>
+					<ArrowBack
+						name="arrow-left"
+						size={RFPercentage(4)}
+						color={colors.white}
+					/>
+				</TouchableOpacity>
+
 				<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 					<View>
 						<Text style={styles.titleText}>{params.movieDetail.title}</Text>
@@ -77,11 +93,7 @@ export default function MovieDetail() {
 						</Text>
 					</View>
 					<View style={styles.ratingContainer}>
-						<Text
-							style={{ color: 'white', paddingRight: 4, fontWeight: 'bold' }}
-						>
-							{params.movieDetail.imDb}
-						</Text>
+						<Text style={styles.rating}>{params.movieDetail.imDb}</Text>
 						<StarIcon name="star" color={colors.gold} size={RFPercentage(2)} />
 					</View>
 				</View>
@@ -107,7 +119,7 @@ const styles = StyleSheet.create({
 	headerImage: {
 		padding: 16,
 		height: heightPercentageToDP(40),
-		justifyContent: 'flex-end',
+		justifyContent: 'space-between',
 	},
 	titleText: {
 		color: colors.white,
@@ -139,5 +151,14 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		flexDirection: 'row',
+	},
+	rating: {
+		color: 'white',
+		paddingRight: 4,
+		fontWeight: 'bold',
+		fontSize: 16,
+		textShadowColor: 'rgba(0, 0, 0, 0.75)',
+		textShadowOffset: { width: -1, height: 1 },
+		textShadowRadius: 10,
 	},
 })
