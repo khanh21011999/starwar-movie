@@ -1,7 +1,6 @@
 # starwar-movie
 
 
-❌ App only run great on android, app not config for ios yet!
 
 To run the app, run `yarn install` or `npm install` at root, then `npx react-native run android` to run the app
 
