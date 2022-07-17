@@ -95,7 +95,7 @@ export default function MovieList() {
 	}
 	console.log('movie list', movieList)
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<Text style={styles.textHeader}>Star Wars Movie List</Text>
 			{movieList === null ? (
 				<>
@@ -115,7 +115,7 @@ export default function MovieList() {
 					renderItem={flatListItem}
 				/>
 			)}
-		</View>
+		</SafeAreaView>
 	)
 }
 const styles = StyleSheet.create({

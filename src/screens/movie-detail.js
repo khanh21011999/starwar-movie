@@ -8,6 +8,7 @@ import {
 	ScrollView,
 	ImageBackground,
 	ActivityIndicator,
+	SafeAreaView,
 } from 'react-native'
 import axios from 'axios'
 import {
@@ -67,52 +68,62 @@ export default function MovieDetail() {
 		)
 	}
 	return (
-		<ScrollView>
-			<ImageBackground
-				source={{ uri: params.movieDetail.image }}
-				style={styles.headerImage}
-			>
-				<TouchableOpacity
-					onPress={() => {
-						nav.goBack()
-					}}
+		<SafeAreaView>
+			<ScrollView>
+				<ImageBackground
+					source={{ uri: params.movieDetail.image }}
+					style={styles.headerImage}
 				>
-					<ArrowBack
-						name="arrow-left"
-						size={RFPercentage(4)}
-						color={colors.white}
-					/>
-				</TouchableOpacity>
+					<TouchableOpacity
+						onPress={() => {
+							nav.goBack()
+						}}
+					>
+						<ArrowBack
+							name="arrow-left"
+							size={RFPercentage(4)}
+							color={colors.white}
+						/>
+					</TouchableOpacity>
 
-				<View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+					<View
+						style={{ flexDirection: 'row', justifyContent: 'space-between' }}
+					>
+						<View>
+							<Text style={styles.titleText}>{params.movieDetail.title}</Text>
+							<Text style={styles.releaseDate}>
+								Release date{' '}
+								{moment(params.movieDetail.release_date).format('MMMM Do YYYY')}
+							</Text>
+						</View>
+						<View style={styles.ratingContainer}>
+							<Text style={styles.rating}>{params.movieDetail.imDb}</Text>
+							<StarIcon
+								name="star"
+								color={colors.gold}
+								size={RFPercentage(2)}
+							/>
+						</View>
+					</View>
+				</ImageBackground>
+				<View style={{ padding: 16 }}>
+					<Text style={styles.directedBy}>
+						Directed by {params.movieDetail.director}
+					</Text>
 					<View>
-						<Text style={styles.titleText}>{params.movieDetail.title}</Text>
-						<Text style={styles.releaseDate}>
-							Release date{' '}
-							{moment(params.movieDetail.release_date).format('MMMM Do YYYY')}
-						</Text>
+						<Text style={styles.header}>The Characters</Text>
+						{castItemDetail.length === 0 && (
+							<ActivityIndicator size={'small'} />
+						)}
 					</View>
-					<View style={styles.ratingContainer}>
-						<Text style={styles.rating}>{params.movieDetail.imDb}</Text>
-						<StarIcon name="star" color={colors.gold} size={RFPercentage(2)} />
-					</View>
+					<ScrollView showsHorizontalScrollIndicator={false} horizontal>
+						{castItemDetail.map((item, index) => renderCastItem(item, index))}
+					</ScrollView>
+					<Text style={styles.header}>Story</Text>
+					<Text>{params.movieDetail.opening_crawl}</Text>
 				</View>
-			</ImageBackground>
-			<View style={{ padding: 16 }}>
-				<Text style={styles.directedBy}>
-					Directed by {params.movieDetail.director}
-				</Text>
-				<View>
-					<Text style={styles.header}>The Characters</Text>
-					{castItemDetail.length === 0 && <ActivityIndicator size={'small'} />}
-				</View>
-				<ScrollView showsHorizontalScrollIndicator={false} horizontal>
-					{castItemDetail.map((item, index) => renderCastItem(item, index))}
-				</ScrollView>
-				<Text style={styles.header}>Story</Text>
-				<Text>{params.movieDetail.opening_crawl}</Text>
-			</View>
-		</ScrollView>
+			</ScrollView>
+		</SafeAreaView>
 	)
 }
 const styles = StyleSheet.create({

@@ -23,56 +23,45 @@ export default function CharacterDetail() {
 	const nav = useNavigation()
 	const renderCharacterItem = (type, detail) => {
 		return (
-			<View
-				style={{
-					flexDirection: 'row',
-					justifyContent: 'space-between',
-					alignItems: 'center',
-					marginVertical: heightPercentageToDP(2),
-				}}
-			>
-				<Text
-					style={{
-						fontSize: 16,
-						fontStyle: 'italic',
-						color: colors.grey,
-					}}
-				>
-					{type}
-				</Text>
-				<Text
-					style={{
-						fontSize: 18,
-						fontWeight: 'bold',
-					}}
-				>
-					{detail}
-				</Text>
+			<View style={styles.itemContainer}>
+				<Text style={styles.typeText}>{type}</Text>
+				<Text style={styles.detailText}>{detail}</Text>
 			</View>
 		)
 	}
 	return (
-		<View style={styles.container}>
-			<TouchableOpacity
-				onPress={() => {
-					nav.goBack()
-				}}
-			>
-				<ArrowBack name="arrow-left" size={RFPercentage(4)} />
-			</TouchableOpacity>
+		<SafeAreaView>
+			<View style={styles.container}>
+				<TouchableOpacity
+					onPress={() => {
+						nav.goBack()
+					}}
+				>
+					<ArrowBack name="arrow-left" size={RFPercentage(4)} />
+				</TouchableOpacity>
 
-			<View style={styles.avatar} />
-			<Text style={styles.name}>{params.characterDetail.name}</Text>
-			{renderCharacterItem('Height', params.characterDetail.height)}
-			{renderCharacterItem('Gender', params.characterDetail.gender)}
-			{renderCharacterItem('Date of birth', params.characterDetail.birth_year)}
-			{renderCharacterItem('Hair Color', params.characterDetail.hair_color)}
-		</View>
+				<View style={styles.avatar} />
+				<Text style={styles.name}>{params.characterDetail.name}</Text>
+				{renderCharacterItem('Height', params.characterDetail.height)}
+				{renderCharacterItem('Gender', params.characterDetail.gender)}
+				{renderCharacterItem(
+					'Date of birth',
+					params.characterDetail.birth_year,
+				)}
+				{renderCharacterItem('Hair Color', params.characterDetail.hair_color)}
+			</View>
+		</SafeAreaView>
 	)
 }
 const styles = StyleSheet.create({
 	container: {
 		padding: 16,
+	},
+	itemContainer: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		marginVertical: heightPercentageToDP(2),
 	},
 	name: {
 		alignSelf: 'center',
@@ -86,5 +75,14 @@ const styles = StyleSheet.create({
 		borderRadius: heightPercentageToDP(10),
 		backgroundColor: colors.grey,
 		alignSelf: 'center',
+	},
+	typeText: {
+		fontSize: 16,
+		fontStyle: 'italic',
+		color: colors.grey,
+	},
+	detailText: {
+		fontSize: 18,
+		fontWeight: 'bold',
 	},
 })
