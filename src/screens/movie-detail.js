@@ -22,11 +22,9 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import { navigationScreen } from '../constant/constant'
 import ArrowBack from 'react-native-vector-icons/FontAwesome'
 export default function MovieDetail() {
-	const itemBackground = require('../../assets/images/all-movie-background.png')
 	const { params } = useRoute()
 	const nav = useNavigation()
 	const [castItemDetail, setCastItemDetail] = useState([])
-	console.log('movie detail', params.movieDetail)
 
 	const loadPeople = () => {
 		axios

@@ -1,20 +1,16 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
-	ViewProps,
-	TextProps,
 	View,
 	Text,
 	TouchableOpacity,
 	StyleSheet,
 	SafeAreaView,
-	ScrollView,
 	FlatList,
-	Image,
 	ImageBackground,
 	ActivityIndicator,
 } from 'react-native'
 import axios from 'axios'
-import { ALL_API_URL, BASE_IDMB_SEARCH } from '../api/api'
+import { ALL_API_URL } from '../api/api'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import {
 	widthPercentageToDP,
@@ -93,7 +89,6 @@ export default function MovieList() {
 			</TouchableOpacity>
 		)
 	}
-	console.log('movie list', movieList)
 	return (
 		<SafeAreaView style={styles.container}>
 			<Text style={styles.textHeader}>Star Wars Movie List</Text>

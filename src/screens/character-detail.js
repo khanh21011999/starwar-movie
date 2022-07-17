@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import {
-	ViewProps,
-	TextProps,
 	View,
 	Text,
 	TouchableOpacity,
 	StyleSheet,
 	SafeAreaView,
-	ScrollView,
-	FlatList,
-	Image,
 } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import ArrowBack from 'react-native-vector-icons/FontAwesome'
@@ -18,8 +13,6 @@ import { heightPercentageToDP } from 'react-native-responsive-screen'
 import colors from '../styles/colors'
 export default function CharacterDetail() {
 	const { params } = useRoute()
-	const itemBackground = require('../../assets/images/all-movie-background.png')
-	console.log('character detail', params.characterDetail)
 	const nav = useNavigation()
 	const renderCharacterItem = (type, detail) => {
 		return (
