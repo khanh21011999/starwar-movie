@@ -22,7 +22,6 @@ import { useNavigation } from '@react-navigation/native'
 import { navigationScreen } from '../constant/constant'
 import { movieDetailMockList } from '../constant/constant'
 export default function MovieList() {
-	const itemBackground = require('../../assets/images/all-movie-background.png')
 	const [movieList, setMovieList] = useState(null)
 	const nav = useNavigation()
 	const getAllMovie = async () => {
@@ -91,7 +90,9 @@ export default function MovieList() {
 	}
 	return (
 		<SafeAreaView style={styles.container}>
-			<Text style={styles.textHeader}>Star Wars Movie List</Text>
+			<Text testID="header" style={styles.textHeader}>
+				Star Wars Movie List
+			</Text>
 			{movieList === null ? (
 				<>
 					<View>

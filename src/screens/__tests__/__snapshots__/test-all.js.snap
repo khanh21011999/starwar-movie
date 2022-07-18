@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test movie l Test movie list 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Object {
+      "flex": 1,
+      "padding": 16,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 53,
+        "fontWeight": "bold",
+      }
+    }
+    testID="header"
+  >
+    Star Wars Movie List
+  </Text>
+  <View>
+    <ActivityIndicator
+      size="small"
+    />
+  </View>
+</RCTSafeAreaView>
+`;
